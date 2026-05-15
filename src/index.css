@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Outfit:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "EB Garamond", serif;
+  --font-sans: "Outfit", sans-serif;
+
+  /* Theme Palette */
+  --color-surface: var(--surface);
+  --color-surface-bright: var(--surface-bright);
+  --color-on-surface: var(--on-surface);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-navy: var(--navy);
+}
+
+@layer base {
+  :root {
+    --surface: #fdfaf9;
+    --surface-bright: #ffffff;
+    --on-surface: #2b1f22;
+    --primary: #d4a5a5;
+    --secondary: #c28888;
+    --tertiary: #f0d5d5;
+    --navy: #1a1a24;
+  }
+
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased overflow-x-hidden;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-on-surface;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-on-surface;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-surface-bright/60 backdrop-blur-[24px] border border-primary/20 shadow-md shadow-primary/5;
+  }
+
+  .diamond-bullet::before {
+    content: "";
+    @apply inline-block w-1.5 h-1.5 bg-secondary rotate-45 mr-3 mb-0.5;
+  }
+
+  .custom-cursor {
+    @apply w-2 h-2 bg-on-surface rounded-full fixed pointer-events-none z-[9999];
+    will-change: transform;
+  }
+
+  .custom-cursor-follower {
+    @apply w-10 h-10 border border-on-surface/30 rounded-full fixed pointer-events-none z-[9998];
+    will-change: transform, border-color, background-color;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
